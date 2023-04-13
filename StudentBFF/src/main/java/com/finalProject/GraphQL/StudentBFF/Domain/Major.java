@@ -1,0 +1,8 @@
+package com.finalProject.GraphQL.StudentBFF.Domain;
+
+public enum Major {
+    COMPUTER_SCIENCE,
+    SOFTWARE_ENGINEERING,
+    ELECTRICAL_ENGINEERING,
+    INFORMATIONAL_SCIENCES,
+}

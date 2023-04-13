@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: StudentBFF
+  graphql:
+    path: /studentbff
+    graphiql:
+      enabled: true
+  config:
+    import: vault://
+  cloud:
+    vault:
+      kv:
+        enabled: true
+      application-name: StudentBFF
+      authentication: TOKEN
+      token: hvs.UzyxKQz8X1MVPW5nReh2TPWO
+      scheme: http
+      host: 127.0.0.1
+      port: 8200
+    azure:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: ${azuread.client_id}
+          client-secret: ${azuread.client_secret}
+        profile:
+          tenant-id: 8f3ee75e-0673-410f-ad7c-c7af5450489e
+        app-id-uri: api://291daab0-543f-469a-9706-90495cb52c17
+        authorization-clients:
+          StudentResourceAPI:
+            authorization-grant-type: client_credentials
+            scopes:
+              - api://a893e8f3-2b7d-4b93-8a33-1f8645ff45ad/.default
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          reactive:
+            function:
+              client: DEBUG
+        security: DEBUG

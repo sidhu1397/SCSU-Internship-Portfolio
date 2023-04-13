@@ -1,0 +1,11 @@
+query
+{
+    studentProfile(studentId: "8a80806f87765bbc01877662e2040001"){
+        studentId
+        name
+        dept
+        level
+        DOB
+        phone
+    }
+}

@@ -1,0 +1,18 @@
+mutation{
+    updateStudent(
+        studentId : "8a80806f87765bbc0187765d8d250000"
+        name: "Sidharth Sridhar",
+        dept: COMPUTER_SCIENCE,
+        level: PG,
+        DOB: "1997-10-11",
+        phone: "6089822837"
+    )
+    {
+        studentId
+        name
+        dept
+        level
+        DOB
+        phone
+    }
+}

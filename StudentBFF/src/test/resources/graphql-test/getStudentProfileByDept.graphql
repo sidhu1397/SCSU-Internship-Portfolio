@@ -1,0 +1,13 @@
+query{
+    allStudents(dept: COMPUTER_SCIENCE){
+
+        studentId
+        name
+        dept
+        level
+        DOB
+        phone
+    }
+
+
+}

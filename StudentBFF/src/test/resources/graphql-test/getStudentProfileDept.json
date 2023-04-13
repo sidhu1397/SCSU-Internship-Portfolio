@@ -1,0 +1,34 @@
+[
+      {
+        "studentId": "8a80806f87765bbc01877662e2040001",
+        "name": "Rohith Sridhar",
+        "dept": "COMPUTER_SCIENCE",
+        "level": "UG",
+        "DOB": "2000-12-20",
+        "phone": "5125141213"
+      },
+      {
+        "studentId": "8a80806f8776653001877665bd400000",
+        "name": "James Franklin",
+        "dept": "COMPUTER_SCIENCE",
+        "level": "PG",
+        "DOB": "1995-11-22",
+        "phone": "123456789"
+      },
+      {
+        "studentId": "8a80806f8776cc34018776ce7bdd0000",
+        "name": "Sidharth Sridhar",
+        "dept": "COMPUTER_SCIENCE",
+        "level": "DOC",
+        "DOB": "1997-10-12",
+        "phone": "6089822838"
+      },
+      {
+        "studentId": "8a80806f87765bbc0187765d8d250000",
+        "name": "Sidharth Sridhar",
+        "dept": "COMPUTER_SCIENCE",
+        "level": "DOC",
+        "DOB": "1997-10-12",
+        "phone": "6089822838"
+      }
+    ]

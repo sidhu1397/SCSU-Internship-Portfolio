@@ -1,0 +1,48 @@
+type Query{
+    studentProfile(
+        studentId: String!
+    ): Student
+    allStudents(dept: Major): [Student]
+}
+
+type Mutation{
+    addStudent(
+        name: String!
+        dept: Major!
+        level: Degree!
+        DOB: String
+        phone: String
+    ): Student
+
+    updateStudent(
+        studentId: String!
+        name: String!
+        dept: Major!
+        level: Degree!
+        DOB: String!
+        phone: String!
+    ): Student
+
+}
+
+type Student {
+    studentId: String!
+    name: String!
+    dept: Major!
+    level: Degree!
+    DOB: String
+    phone: String
+}
+
+enum Degree{
+    UG
+    PG
+    DOC
+}
+
+enum Major{
+    COMPUTER_SCIENCE
+    SOFTWARE_ENGINEERING
+    ELECTRICAL_ENGINEERING
+    INFORMATIONAL_SCIENCES
+}

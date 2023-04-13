@@ -1,0 +1,13 @@
+query{
+    allStudents{
+
+        studentId
+        name
+        dept
+        level
+        DOB
+        phone
+    }
+
+
+}
