@@ -3,10 +3,12 @@ package com.finalProject.GraphQL.StudentBFF.Controller;
 import com.finalProject.GraphQL.StudentBFF.Domain.Degree;
 import com.finalProject.GraphQL.StudentBFF.Domain.Major;
 import com.finalProject.GraphQL.StudentBFF.Domain.Student;
+import com.finalProject.GraphQL.StudentBFF.Domain.StudentRegistration;
 import com.finalProject.GraphQL.StudentBFF.Exception.GraphQLAppException;
 import com.finalProject.GraphQL.StudentBFF.Security.HasReadAccess;
 import com.finalProject.GraphQL.StudentBFF.Security.HasWriteAccess;
 import com.finalProject.GraphQL.StudentBFF.Service.StudentProfileService;
+import com.finalProject.GraphQL.StudentBFF.Service.StudentRegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -21,6 +23,7 @@ import java.util.List;
 public class StudentController {
 
     private final StudentProfileService studentProfileService;
+    private final StudentRegistrationService studentRegistrationService;
     @QueryMapping
     @HasReadAccess
     public Student studentProfile(@Argument String studentId) throws GraphQLAppException {
@@ -57,6 +60,23 @@ public class StudentController {
         student.setPhone(phone);
         return studentProfileService.updateStudentProfile(student);
 
+    }
+
+    @MutationMapping
+    @HasWriteAccess
+    public StudentRegistration registerCourse(@Argument String studentId, @Argument String courseId, @Argument String courseName, @Argument Major dept) throws GraphQLAppException {
+        StudentRegistration studentRegistration = new StudentRegistration();
+        studentRegistration.setStudentId(studentId);
+        studentRegistration.setCourseId(courseId);
+        studentRegistration.setCourseName(courseName);
+        studentRegistration.setDept(dept);
+        return studentRegistrationService.registerCourse(studentRegistration);
+    }
+
+    @QueryMapping
+    @HasReadAccess
+    public List<StudentRegistration> getRegistrations(@Argument String studentId) throws GraphQLAppException {
+        return  studentRegistrationService.getStudentRegistrations(studentId);
     }
 
 

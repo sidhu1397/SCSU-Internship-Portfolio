@@ -3,6 +3,7 @@ type Query{
         studentId: String!
     ): Student
     allStudents(dept: Major): [Student]
+    getRegistrations(studentId : String!): [StudentRegistration]
 }
 
 type Mutation{
@@ -23,6 +24,20 @@ type Mutation{
         phone: String!
     ): Student
 
+    registerCourse(
+       studentId: String!
+       courseId: String!
+       courseName: String!
+        dept: Major!
+    ): StudentRegistration
+
+}
+
+type StudentRegistration {
+    studentId: String!
+    courseId: String!
+    courseName: String!
+    dept: Major!
 }
 
 type Student {

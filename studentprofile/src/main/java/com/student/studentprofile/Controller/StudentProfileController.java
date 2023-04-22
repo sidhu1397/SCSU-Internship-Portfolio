@@ -2,8 +2,10 @@ package com.student.studentprofile.Controller;
 
 import com.student.studentprofile.Domain.Major;
 import com.student.studentprofile.Domain.Student;
+import com.student.studentprofile.Domain.StudentRegistration;
 import com.student.studentprofile.Exception.StudentProfileException;
 import com.student.studentprofile.Repository.StudentProfileRepository;
+import com.student.studentprofile.Repository.StudentRegistrationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,9 @@ public class StudentProfileController {
 
     @Autowired
     StudentProfileRepository studentProfileRepository;
+
+    @Autowired
+    StudentRegistrationRepository studentRegistrationRepository;
 
     public static final String ID = "id";
     public static final String DEPT = "dept";
@@ -85,5 +90,27 @@ public class StudentProfileController {
 
     }
 
+    @GetMapping("/studentRegistration/{id}")
+    public ResponseEntity<List<StudentRegistration>> getStudentRegistration(@PathVariable(ID) @NotBlank String studentId) throws StudentProfileException {
+        List<StudentRegistration> studentRegistrationList = new ArrayList<>();
+        studentRegistrationRepository.findBystudentId(studentId).forEach(studentRegistrationList::add);
+        if (!studentRegistrationList.isEmpty()) {
+            return new ResponseEntity<>(studentRegistrationList, HttpStatus.OK);
+        } else {
+            throw new StudentProfileException(HttpStatus.NOT_FOUND.toString(), "Student Registration Data Not found",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/studentRegistration/{id}")
+    public ResponseEntity<StudentRegistration> addStudentRegistration(@PathVariable(ID) @NotBlank String studentId, @RequestBody StudentRegistration studentRegistration)
+    {
+        StudentRegistration tempStudentReg = new StudentRegistration();
+        tempStudentReg.setStudentId(studentRegistration.getStudentId());
+        tempStudentReg.setDept(studentRegistration.getDept());
+        tempStudentReg.setCourseId(studentRegistration.getCourseId());
+        tempStudentReg.setCourseName(studentRegistration.getCourseName());
+        StudentRegistration response = studentRegistrationRepository.save(tempStudentReg);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 }
